@@ -1,0 +1,125 @@
+@CHARSET "UTF-8";
+body{
+	background-image:url("../gywpic/bg.jpg");
+	background-position:-2px -65px;  
+	background-size:cover;
+	
+}
+.text-white {
+  color: #fff !important;
+}
+.custom-font{
+	  font-family: 'Montserrat', sans-serif;
+	  letter-spacing: 0.8px;
+}
+h2{
+	line-height:42px;
+	font-weight:500;
+	text-align:center;
+
+}
+h1{
+	line-height:42px;
+	font-weight:500;
+	font-size:60;
+	text-align:center;
+	margin-top:260px ; 
+}
+
+
+.btn{
+	color: #fff;
+    background-color: #1f3853;
+    text-decoration:none;
+	margin-left:46%;
+	font-size: 16px;
+	padding: 11px 19px;
+    border-radius: 4px;
+}
+.btn:hover {
+    background-color: #152639;
+}
+#login_div{
+	background-image:url("../gywpic/divbg.gif");
+	background-size:cover;
+	position:relative;   /*relative相较于正常位置*/
+	top:-38%;
+	left:36%;
+	width:388px;
+	height:485px;
+	
+	animation:myfirst 0.8s linear 0s infinite alternate;   /*动画！！*/
+	animation-iteration-count: 1;
+}
+@keyframes myfirst
+{
+	0%   {top:20%;}
+	2%   {top:16%;}
+	42%  {top:-5%;}
+
+	100% {top:-38%;}
+}
+#userid{
+	position:relative;
+	top:90px;
+	left:120px;
+	height:50px;
+	width:160px;
+	border:0px;
+	outline:none;
+	font-size:21px;
+}
+#password{
+	position:relative;
+	top:35px;
+	left:123px;
+	height:50px;
+	width:160px;
+	border:0px;
+	outline:none;
+	font-size:24px;	
+}
+#answer{
+	position:relative;
+	top:72px;
+	left:150px;
+	height:50px;
+	width:130px;
+	border:0px;
+	outline:none;
+	font-size:21px;	
+}
+.btn2{
+	position:relative;
+	top:130px;
+	color: #fff;
+    background-color:  #E27575;
+    text-decoration:none;
+	font-size: 16px;
+	padding: 8px 15px;
+    border-radius: 4px;
+}
+.btn2:hover {
+    background-color: #CF7A7A;
+}
+#label1{	
+	position:relative; 
+	top:128px;
+	left:50px;
+	font-size:21px;
+	
+}
+#label2{	
+	position:relative; 
+	top:96px;
+	left:50px;
+	font-size:21px;
+	
+}
+#label3{	
+	position:relative; 
+	top:110px;
+	left:56px;
+	font-size:21px;
+	
+}

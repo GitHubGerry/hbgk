@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+    <struts>
+        <package name="default" namespace="/" extends="struts-default">
+        <!-- name action的名字，class：实现类 -->
+        
+        
+        <action name="helloworldaction" class="helloworldaction.HelloWorldAction">
+            
+            <!-- 结果集，即action中SUCCESS返回的视图 -->
+
+            <result name="success">
+            	/login.jsp
+            </result>
+            <result name="error">
+            	/HelloStruts2.jsp
+            </result>
+        </action>
+        
+        <!--                        我开始啦                                                              -->
+        <action name="HelloMain" class="myaction.LoginAction" method="login">
+            <result name="success" >
+            	/home.jsp
+            </result>
+            <result name="error" >
+            	/login.jsp
+            </result>
+        </action>
+        
+        <!--使用通配符* 和 {1}的方式 ,{1}不起作用-->
+        <action name="getStorehouse" class="myaction.StorehouseAction" method="get">
+            <result>
+				/storehouse.jsp
+            </result>
+        </action>
+        <action name="postStorehouse" class="myaction.StorehouseAction" method="post">
+            <result type="redirect">
+				/storehouse.jsp
+            </result>
+        </action>
+        <action name="editStorehouse" class="myaction.StorehouseAction" method="edit">
+            <result type="redirect">
+				/storehouse.jsp
+            </result>
+        </action>
+        <action name="deleteStorehouse" class="myaction.StorehouseAction" method="delete">
+            <result type="redirect">
+				/storehouse.jsp
+            </result>
+        </action>
+        
+        
+        <!--      必须post 方法 表单传了不乱码 我编个insert方法就不行。   -->
+        <action name="getProduct1" class="myaction.Product1Action" method="get">
+            <result>
+				/product.jsp
+            </result>
+        </action>
+        <action name="postProduct1" class="myaction.Product1Action" method="post">
+            <result type="redirect">
+				/product.jsp
+            </result>
+        </action>
+        <action name="editProduct1" class="myaction.Product1Action" method="edit">
+            <result type="redirect">
+				/product.jsp
+            </result>
+        </action>
+        <action name="deleteProduct1" class="myaction.Product1Action" method="delete">
+            <result type="redirect">
+				/product.jsp
+            </result>
+        </action>
+
+        <!--      进货行为                 (第一个那个result无实际作用)    -->
+        <action name="getPO" class="myaction.POAction" method="get">
+            <result>
+				/purchaselog.jsp
+            </result>
+        </action>
+        <action name="postPO" class="myaction.POAction" method="post">
+            <result type="redirect">
+				/purchaseorder.jsp
+            </result>
+        </action>
+        
+        <action name="editProduct2" class="myaction.Product2Action" method="edit">
+            <result type="redirect">
+				/purchaseorder.jsp
+            </result>
+        </action>
+
+        <action name="getSupplier" class="myaction.SupplierAction" method="get">
+            <result>
+				/supplier.jsp
+            </result>
+        </action>
+        <action name="postSupplier" class="myaction.SupplierAction" method="post">
+            <result type="redirect">
+				/supplier.jsp
+            </result>
+        </action>
+        <action name="editSupplier" class="myaction.SupplierAction" method="edit">
+            <result type="redirect">
+				/supplier.jsp
+            </result>
+        </action>
+        <action name="deleteSupplier" class="myaction.SupplierAction" method="delete">
+            <result type="redirect">
+				/supplier.jsp
+            </result>
+        </action>
+        
+        
+        <!--      售货行为                     -->
+        <action name="editProduct3" class="myaction.Product3Action" method="edit">
+            <result type="redirect">
+				/salesorder.jsp
+            </result>
+        </action>
+        <action name="getSalesorder" class="myaction.SalesorderAction" method="get">
+            <result>
+				/purchaselog.jsp
+            </result>
+        </action>
+        <action name="postSalesorder" class="myaction.SalesorderAction" method="post">
+            <result type="redirect">
+				/purchaseorder.jsp
+            </result>
+        </action>
+        
+        <action name="getBuyer" class="myaction.BuyerAction" method="get">
+            <result>
+				/buyer.jsp
+            </result>
+        </action>
+        <action name="postBuyer" class="myaction.BuyerAction" method="post">
+            <result type="redirect">
+				/buyer.jsp
+            </result>
+        </action>
+        <action name="editBuyer" class="myaction.BuyerAction" method="edit">
+            <result type="redirect">
+				/buyer.jsp
+            </result>
+        </action>
+        <action name="deleteBuyer" class="myaction.BuyerAction" method="delete">
+            <result type="redirect">
+				/buyer.jsp
+            </result>
+        </action>
+        
+        <!--         库存状况         -->
+        <action name="getSituation" class="myaction.SituationAction" method="get">
+        	<result>
+				/situation.jsp        
+        	</result>
+        </action>
+        <action name="getTransferorder" class="myaction.TransferorderAction" method="get">
+        	<result>
+				/situation.jsp        
+        	</result>
+        </action>
+        <action name="postTransferorder" class="myaction.TransferorderAction" method="post">
+        	<result type="redirect">
+				/transferorder.jsp        
+        	</result>
+        </action>
+        
+        
+        </package>
+    </struts>
