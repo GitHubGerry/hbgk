@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring
+		http://mybatis.org/schema/mybatis-spring.xsd">
+		
+<!--取代mybatis-config.xml-->
+<mybatis:scan base-package="com.gywsystem3.mapper"/>
+<!--扫描包注册为bean-->
+<context:component-scan base-package="com.gywsystem3"/>
+<!--使用PropertyOverrideConfigurer后处理器加载数据源参数， PropertyOverrideConfigurer的属性文件指定的信息可以直接覆盖Spring配置文件中原默认值（不管这个属性是否使用了占位符以及是否存在）-->
+<context:property-override location="classpath:db.properties"/>
+<!--配置Druid数据源-->
+<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close"/>   
+<!--配置sqlSessionFactory-->
+<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" p:dataSource-ref="dataSource"/>
+<!--JDBC事物管理器-->
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" p:dataSource-ref="dataSource"/>
+<!--启用annotation注解方式事务管理-->
+<tx:annotation-driven transaction-manager="transactionManager"/>
+
+</beans>
+
+
+

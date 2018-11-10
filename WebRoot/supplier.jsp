@@ -3,100 +3,19 @@
 <head>
 	<meta charset="UTF-8">
 	<title>何不管库</title>
-	<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
-	<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
-	<link rel="stylesheet" type="text/css" href="css/bootsnav.css">
-	<link rel="stylesheet" type="text/css" href="gywcss/home.css">
-	
+	<jsp:include page="toolbar.jsp"></jsp:include>
 	<link rel="stylesheet" type="text/css" href="jqeasyui/themes/gray/easyui.css">
-	<script type="text/javascript" src="jqeasyui/jquery.min.js"></script>
-    <script type="text/javascript" src="jqeasyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="jqeasyui/easyui-lang-zh_CN.js"></script>	
-	<script type="text/javascript" src="system/easyui_functions.js"></script>
-	
 	
 </head>
 <body>
 
 <div id="main">
-<div id="daohanglan" class="jq22-container">
-	<header class="jq22-header">
-		<h1>&nbsp何不管库</h1>
-	</header>
-<div class="demo" style="padding: 1em 0;height:100px">
-
-<nav class="navbar navbar-default navbar-mobile bootsnav">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-            <i class="fa fa-bars"></i>
-        </button>
-    </div>
-    <div class="collapse navbar-collapse" id="navbar-menu">
-        <ul class="nav navbar-nav" data-in="fadeInDown" data-out="fadeOutUp">
-            <li><a href="home.jsp">主页</a></li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">管理&nbsp</a>
-                <ul class="dropdown-menu">
-                    <li><a href="storehouse.jsp" id="storehouse">仓库</a></li>
-                    <li><a href="product.jsp">商品</a></li>
-                    <li><a href="category.jsp">分类</a></li>
-                    <li><a href="brand.jsp">品牌</a></li>
-                    <li><a href="feature.jsp">规格</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >备用</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Custom Menu</a></li>
-                            <li><a href="#">Custom Menu</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Sub Menu</a>
-                                <ul class="dropdown-menu multi-dropdown">
-                                    <li><a href="http://www.jq22.com">Custom Menu</a></li>
-                                    <li><a href="#">Custom Menu</a></li>
-                                    <li><a href="#">Custom Menu</a></li>
-                                    <li><a href="#">Custom Menu</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">进货&nbsp</a>
-                <ul class="dropdown-menu">
-                    <li><a href="purchaselog.jsp">进货记录</a></li>
-                    <li><a href="supplier.jsp">供应商</a></li>                 
-                    <li><a href="purchaseorder.jsp">填写进货单</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">销售&nbsp</a>
-                <ul class="dropdown-menu">
-                    <li><a href="saleslog.jsp">销售记录</a></li>
-                    <li><a href="buyer.jsp">顾客</a></li>                 
-                    <li><a href="salesorder.jsp">填写售货单</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">库存&nbsp</a>
-                <ul class="dropdown-menu">
-                    <li><a href="situation.jsp">库存状况</a></li>
-                    <li><a href="flow.jsp">库存流水</a></li>                 
-                    <li><a href="transferorder.jsp">调拨</a></li>
-                </ul>
-            </li>
-            <li><a href="#" id="contact">Contact Us</a></li>
-        </ul>
-    </div>
-</nav>
-
-</div>
-</div>
+<div id="datagrid_div" style="position:absolute;top:210px"></div>
 
 <div id="realman" style="fit:auto;">
-	<a href="#" id="insert" style="float:right;margin-right:30px" class="btn3" onclick="insertsh()">新增</a>
+	<a href="#" id="insert" style="position:absolute;left:93%;top:177px;margin-right:30px" class="btn3" onclick="insertsh()">新增</a>
 	<div class="easyui-window" id="mywin" style="height:435px;width:390px" title="新增供应商">
-	<form id="insert" action="postSupplier" onsubmit="return check1()" method="post">
+	<form id="insert" >
 		<div style="position:absolute;top:57px;left:34px">供应商编码：</div>
 		<div style="position:absolute;top:55px;left:120px"> <input id="supplierid" name="supplierid" type="text" class="easyui-textbox"/></div>
 		<div style="position:absolute;top:102px;left:62px">公司名:</div>
@@ -112,7 +31,7 @@
 		<div style="position:absolute;top:327px;left:69px">微信:</div>
 		<div style="position:absolute;top:325px;left:120px" > <input id="wechat" name="wechat" style="width:178px" class="easyui-textbox"/></div>	
 		<div style="position:absolute;top:380px;left:120px"><input class="easyui-linkbutton" style="width:60px;height:25px" type="reset" value="重置"/></div>
-		<div style="position:absolute;top:380px;left:200px"><input class="easyui-linkbutton" style="width:60px;height:25px" type="submit" value="提交"></div>		 
+		<div style="position:absolute;top:380px;left:200px"><input class="easyui-linkbutton" style="width:60px;height:25px" onclick="check1()" value="提交"></div>		 
 	</form>
 	</div>
 	<div class="easyui-window" id="mywin2" style="height:435px;width:390px" title="修改供应商">
@@ -137,19 +56,14 @@
 	</div>
 
 </div> 
-
-
-</div>
 </div>
 
-<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
-<script type="text/javascript" src="js/bootsnav.js"></script>
 
 
 <script>
 $(document).ready(function(){
 	$.ajax({
-		url:'getSupplier',
+		url:'selectSupplier',
 		data:{},
 		dataType: "json",
 		anysc:false,
@@ -157,7 +71,7 @@ $(document).ready(function(){
 		success:function(data){
 			console.log(data);
 			var str="<input class='eayui-datagrid' id='mydatagrid' style='width:900px;height:500px'/>";
-			$("#realman").append($(str));
+			$("#datagrid_div").append($(str));
 			$("#mydatagrid").datagrid({
 				title: '&nbsp;供应商列表',
 				iconCls: "panelIcon",
@@ -170,8 +84,8 @@ $(document).ready(function(){
 				striped: true,  //条纹化
 				collapsible: true,
 				singleSelect: true, 
-				sortName: 'volume',
-				sortOrder: 'desc',
+				sortName: 'supplierid',
+				sortOrder: 'asc',
 				remoteSort: false,
 				columns:[[
 							{ title: '公司名', field: 'companyname', width: 190, halign:'center', align: 'center'},
@@ -183,7 +97,7 @@ $(document).ready(function(){
 							{ title: '交易次数', field:'volume', width: 120, halign:'center', align: 'center',sortable:true},
 							{ title: '操作', field:'operate', width: 210, halign:'center', align: 'center',formatter:operate}
 							]],
-				frozenColumns: [[{ title:'供应商编号',field: 'supplierid', width:182,align: 'center'}]]
+				frozenColumns: [[{ title:'供应商编号',field: 'supplierid', width:182,align: 'center',sortable:true}]]
 
 			})		
 		}
@@ -197,6 +111,13 @@ function operate(val,row,index){
 function check1(){
 	var err='';
 	var supplierid=$("#supplierid").textbox("getValue").trim();
+	var companyname=$("#companyname").textbox("getValue").trim();
+	var linkman1=$("#linkman1").textbox("getValue").trim();
+	var tele1=$("#tele1").textbox("getValue").trim();
+	var linkman2=$("#linkman2").textbox("getValue").trim();
+	var tele2=$("#tele2").textbox("getValue").trim();
+	var wechat=$("#wechat").textbox("getValue").trim();
+	
 	if(supplierid==''){err+='供应商编号不能为空<br>'};
 	//---检验重复
 	aa=$("#mydatagrid").datagrid("getRows");
@@ -206,18 +127,34 @@ function check1(){
 			break;
 		}
 	}
-	if($("#companyname").textbox("getValue").trim()==''){err+='公司名不能为空<br>'};
-	if($("#linkman1").textbox("getValue").trim()==''){err+='联系人1不能为空<br>'};
-	if($("#tele1").textbox("getValue").trim()==''){err+='电话1不能为空<br>'};
-	if($("#wechat").textbox("getValue").trim()==''){err+='微信不能为空<br>'};
+	if(companyname==''){err+='公司名不能为空<br>'};
+	if(linkman1==''){err+='联系人1不能为空<br>'};
+	if(tele1==''){err+='电话1不能为空<br>'};
+	if(wechat==''){err+='微信不能为空<br>'};
 	
 	if(err!=''){
 		$.messager.alert('系统提示',err);
-		return false;
-	}else return true;
+		
+	}else {
+		insertdo(supplierid,companyname,linkman1,tele1,linkman2,tele2,wechat);
+	}
 }
-function editsh(index){  
-	//------------------------别忘记form 只有get和post
+
+function insertdo(supplierid,companyname,linkman1,tele1,linkman2,tele2,wechat){
+	var url="insertSupplier?supplierid="+supplierid+"&companyname="+companyname+"&linkman1="+linkman1+"&tele1="+tele1+"&linkman2="+linkman2;
+	url+="&tele2="+tele2+"&wechat="+wechat;
+	$.ajax({
+		url:url,
+		async:false,
+		success:function(){
+			window.location.reload();
+		}
+	
+		
+	})
+}
+
+function editsh(index){
 		$("#mydatagrid").datagrid("selectRow",index)
 		aa=$("#mydatagrid").datagrid("getSelected");
 		$("#supplierid2").textbox("setValue",aa.supplierid.trim());
@@ -243,20 +180,19 @@ function editdo(){
 		$.messager.alert('系统提示',err);
 	}else flag=2;
 	if(flag==2){
-		var url='editSupplier?supplierid='+$("#supplierid2").textbox("getValue")+'&companyname='+$("#companyname2").textbox("getValue");
+		var url='updateSupplier?supplierid='+$("#supplierid2").textbox("getValue")+'&companyname='+$("#companyname2").textbox("getValue");
 		url+='&linkman1='+$("#linkman12").textbox("getValue")+'&tele1='+$("#tele12").textbox("getValue")+'&linkman2='+$("#linkman22").textbox("getValue");
 		url+='&tele2='+$("#tele22").textbox("getValue")+'&wechat='+$("#wechat2").textbox("getValue");
-		url=encodeURI(url); 
-		url=encodeURI(url); //二次次编码解决url传递中文
+
 		$.ajax({
 			url:url,
 			method:'edit',
 			async:false,
 			success:function(){
-				
+				window.location.reload();
 			}
 		})
-		window.location.reload();
+
 	}
 }
 
@@ -273,9 +209,12 @@ function deletesh(index){
 			url:url,
 			method:'delete',
 			async:false,
-			success:function(){}
+			success:function(){
+				
+				window.location.reload();
+			}
 		})
-		window.location.reload();
+
 	}
 
 }

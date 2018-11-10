@@ -1,30 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>gywsystem2</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+	http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" 
+	id="WebApp_ID" version="3.1">
+	
+	<!-- 配置spring核心监听器，默认会以 /WEB-INF/applicationContext.xml作为配置文件 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<!-- contextConfigLocation参数用来指定Spring的配置文件 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/applicationContext*.xml</param-value>
+	</context-param>
+	
+	<!-- 定义Spring MVC的前端控制器 -->
+	<servlet-mapping>
+    	<servlet-name>default</servlet-name>
+    	<url-pattern>*.js</url-pattern>
+    	<url-pattern>*.css</url-pattern>
+    	<url-pattern>*.jpg</url-pattern>
+  	</servlet-mapping>
   
-  <!-- 配置核心拦截器 -->
-<filter>
-    <!-- Filter的名字 -->
-    <filter-name>struts2</filter-name>
-    <!-- Filter的实现类 struts2.5以前可能有所不同 -->
-    <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
-</filter>
-<filter-mapping>
-    <filter-name>struts2</filter-name>
-    <!-- 拦截所有的url -->
-    <url-pattern>/*</url-pattern>
-</filter-mapping>
-
+  <servlet>
+    <servlet-name>springmvc</servlet-name>
+    <servlet-class>
+        org.springframework.web.servlet.DispatcherServlet
+    </servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/springmvc-config.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
   
+  <!-- 让Spring MVC的前端控制器拦截所有请求 -->
+  <servlet-mapping>
+    <servlet-name>springmvc</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
   
-  
-  
+  <!-- 编码过滤器 -->
+  <filter>
+		<filter-name>characterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+ </filter>
+	<filter-mapping>
+		<filter-name>characterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+<!-- 连接池 启用 Web 监控统计功能    start-->  
+  <filter>  
+     <filter-name>DruidWebStatFilter</filter-name>  
+     <filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>  
+     <init-param>  
+         <param-name>exclusions</param-name>  
+         <param-value>*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*</param-value>  
+     </init-param>  
+  </filter>  
+  <filter-mapping>  
+     <filter-name>DruidWebStatFilter</filter-name>  
+     <url-pattern>/*</url-pattern>  
+  </filter-mapping>  
+  <servlet>  
+     <servlet-name>DruidStatView</servlet-name>  
+     <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>  
+  </servlet>  
+  <servlet-mapping>  
+     <servlet-name> DruidStatView </servlet-name>  
+     <url-pattern>/druid/*</url-pattern>  
+  </servlet-mapping>  
+  <!-- 连接池 启用 Web 监控统计功能    end-->  
+	
 </web-app>

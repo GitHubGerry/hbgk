@@ -3,97 +3,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title>何不管库</title>
-	<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
-	<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
-	<link rel="stylesheet" type="text/css" href="css/bootsnav.css">
-	<link rel="stylesheet" type="text/css" href="gywcss/home.css">
-	
+	<jsp:include page="toolbar.jsp"></jsp:include>
 	<link rel="stylesheet" type="text/css" href="jqeasyui/themes/gray/easyui.css">
-	<script type="text/javascript" src="jqeasyui/jquery.min.js"></script>
-    <script type="text/javascript" src="jqeasyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="jqeasyui/easyui-lang-zh_CN.js"></script>	
-	<script type="text/javascript" src="system/easyui_functions.js"></script>
-	
 	
 </head>
 <body>
 
 <div id="main">
-<div id="daohanglan" class="jq22-container">
-	<header class="jq22-header">
-		<h1>&nbsp何不管库</h1>
-	</header>
-<div class="demo" style="padding: 1em 0;height:100px">
 
-<nav class="navbar navbar-default navbar-mobile bootsnav">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-            <i class="fa fa-bars"></i>
-        </button>
-    </div>
-    <div class="collapse navbar-collapse" id="navbar-menu">
-        <ul class="nav navbar-nav" data-in="fadeInDown" data-out="fadeOutUp">
-            <li><a href="home.jsp">主页</a></li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">管理&nbsp</a>
-                <ul class="dropdown-menu">
-                    <li><a href="storehouse.jsp" id="storehouse">仓库</a></li>
-                    <li><a href="product.jsp">商品</a></li>
-                    <li><a href="category.jsp">分类</a></li>
-                    <li><a href="brand.jsp">品牌</a></li>
-                    <li><a href="feature.jsp">规格</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >备用</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Custom Menu</a></li>
-                            <li><a href="#">Custom Menu</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Sub Menu</a>
-                                <ul class="dropdown-menu multi-dropdown">
-                                    <li><a href="http://www.jq22.com">Custom Menu</a></li>
-                                    <li><a href="#">Custom Menu</a></li>
-                                    <li><a href="#">Custom Menu</a></li>
-                                    <li><a href="#">Custom Menu</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">进货&nbsp</a>
-                <ul class="dropdown-menu">
-                    <li><a href="purchaselog.jsp">进货记录</a></li>
-                    <li><a href="supplier.jsp">供应商</a></li>                 
-                    <li><a href="purchaseorder.jsp">填写进货单</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">销售&nbsp</a>
-                <ul class="dropdown-menu">
-                    <li><a href="saleslog.jsp">销售记录</a></li>
-                    <li><a href="buyer.jsp">顾客</a></li>                 
-                    <li><a href="salesorder.jsp">填写售货单</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">库存&nbsp</a>
-                <ul class="dropdown-menu">
-                    <li><a href="situation.jsp">库存状况</a></li>
-                    <li><a href="flow.jsp">库存流水</a></li>                 
-                    <li><a href="transferorder.jsp">调拨</a></li>
-                </ul>
-            </li>
-            <li><a href="#" id="contact">Contact Us</a></li>
-        </ul>
-    </div>
-</nav>
-
-</div>
-</div>
-<div id="realman" style="fit:auto;">
-<div style="border:1px solid #BDBDBD;height:50px;margin:3px;width:97.5%;border-radius:8px">
+<div id="realman">
+<div style="border:1px solid #BDBDBD;height:50px;margin:3px;width:97.5%;border-radius:8px;position:absolute;top:170px">
 	<div style="position:relative;top:10px;left:10px;height:48px;width:500px;display:inline">
 		<label style="font-size:16px;">关键字:&nbsp</label> 
 		<input id="key" style="width:180px;height:30px" class="easyui-combobox"/>
@@ -108,8 +27,9 @@
 	<a href="#" id="insert" style="float:right;margin:10px" class="btn3" onclick="insertsh()">新增</a>
 	
 </div>
+<div id="datagrid_div" style="position:absolute;top:240px" ></div>
 <div class="easyui-window" id="mywin" style="height:470px;width:390px" title="新增商品">
-<form id="insert" action="postProduct1" onsubmit="return check1()" method="post">
+<form id="insert" >
 		<div style="position:absolute;top:57px;left:50px">商品编码：</div>
 		<div style="position:absolute;top:55px;left:120px"> <input id="productid" name="productid" type="text" class="easyui-textbox"/></div>
 		<div style="position:absolute;top:102px;left:50px">商品名称:</div>
@@ -130,7 +50,7 @@
 				
 		
 		<div style="position:absolute;top:415px;left:120px"><input class="easyui-linkbutton" style="width:60px;height:25px" type="reset" value="重置"/></div>
-		<div style="position:absolute;top:415px;left:200px"><input class="easyui-linkbutton" style="width:60px;height:25px" type="submit" value="提交"></div>
+		<div style="position:absolute;top:415px;left:200px"><input class="easyui-linkbutton" style="width:60px;height:25px" onclick="check1()" value="提交"></div>
 		 
 </form>
 </div>
@@ -161,8 +81,6 @@
 </div>
 </div>
 
-<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
-<script type="text/javascript" src="js/bootsnav.js"></script>
 
 
 <script>
@@ -186,19 +104,19 @@ $(document).ready(function(){
 
 
 	$.ajax({
-		url:'getProduct1',
+		url:'selectProduct',
 		data:{},
 		dataType: "json",
 		anysc:false,
 		method:'get',
 		success:function(data){
 			var str="<input class='eayui-datagrid' id='mydatagrid' style='width:900px;height:500px'/>";
-			$("#realman").append($(str));
+			$("#datagrid_div").append($(str));
 			$("#mydatagrid").datagrid({
 				title: '&nbsp;商品列表',
 				iconCls: "panelIcon",
 				width:1500, 
-				height:450,
+				height:400,
 				data:data,
 				nowrap: true,
 				autoRowHeight: true,
@@ -223,7 +141,7 @@ $(document).ready(function(){
 		}
 		})//---------ajax结束
 		$.ajax({
-			url:'getStorehouse',
+			url:'selectStorehouse',
 			data:{},
 			dataType: "json",
 			anysc:false,
@@ -253,6 +171,14 @@ function operate(val,row,index){
 function check1(){
 	var err='';
 	var productid=$("#productid").textbox("getValue").trim();
+	var productname=$("#productname").textbox("getValue").trim();
+	var apc=$("#apc").numberbox("getValue").trim();
+	var brand=$("#brand").textbox("getValue").trim();
+	var category=$("#category").textbox("getValue").trim();
+	var feature1=$("#feature1").textbox("getValue").trim();
+	var feature2=$("#feature2").textbox("getValue").trim();
+	var housename=$("#housename").textbox("getValue").trim();
+	
 	if(productid==''){err+='商品编码不能为空<br>'};
 	//---检验重复id
 	aa=$("#mydatagrid").datagrid("getRows");
@@ -262,17 +188,33 @@ function check1(){
 			break;
 		}
 	}
-	if($("#productname").textbox("getValue").trim()==''){err+='商品名称不能为空<br>'};
-	if($("#apc").numberbox("getValue").trim()==''){err+='商品进价不能为空<br>'};
-	if($("#brand").textbox("getValue").trim()==''){err+='商品品牌不能为空<br>'};
-	if($("#category").textbox("getValue").trim()==''){err+='商品种类不能为空<br>'};
-	if($("#feature1").textbox("getValue").trim()==''){err+='商品规格1不能为空<br>'};	
-	if($("#housename").textbox("getValue").trim()==''){err+='所存仓库不能为空<br>'};	
+	if(productname==''){err+='商品名称不能为空<br>'};
+	if(apc==''){err+='商品进价不能为空<br>'};
+	if(brand==''){err+='商品品牌不能为空<br>'};
+	if(category==''){err+='商品种类不能为空<br>'};
+	if(feature1==''){err+='商品规格1不能为空<br>'};	
+	if(housename==''){err+='所存仓库不能为空<br>'};	
 	if(err!=''){
 		$.messager.alert('系统提示',err);
 		return false;
-	}else return true;
+	}else {
+		insertdo(productid,productname,apc,housename,brand,category,feature1,feature2);
+	};
 }
+function insertdo(productid,productname,apc,housename,brand,category,feature1,feature2){
+	var url="insertProduct?productid="+productid+"&productname="+productname+"&apc="+apc;
+	url+="&housename="+housename+"&brand="+brand+"&category="+category+"&feature1="+feature1+"&feature2="+feature2;
+	console.log(url);
+	$.ajax({
+		url:url,
+		async:false,
+		success:function(){
+			window.location.reload();
+		}
+		
+	})
+}
+
 function editsh(index){  
 //------------------------别忘记form 只有get和post
 	$("#mydatagrid").datagrid("selectRow",index)
@@ -281,7 +223,7 @@ function editsh(index){
 	$("#productid2").textbox({readonly:true});
 	$("#productname2").textbox("setValue",aa.productname.trim());
 	$("#housename2").textbox("setValue",aa.housename.trim());
-	$("#apc2").numberbox("setValue",aa.averagepercost.trim());
+	$("#apc2").numberbox("setValue",aa.averagepercost);
 	$("#brand2").textbox("setValue",aa.brand.trim());
 	$("#category2").textbox("setValue",aa.category.trim());
 	$("#feature12").textbox("setValue",aa.feature1.trim());
@@ -303,20 +245,19 @@ function editdo(){
 		$.messager.alert('系统提示',err);
 	}else flag=2;
 	if(flag==2){
-		var url='editProduct1?productid='+$("#productid2").textbox("getValue")+'&productname='+$("#productname2").textbox("getValue")+'&housename='+$("#housename2").textbox("getValue");
-		url+='&averagepercost='+$("#apc2").numberbox('getValue')+'&brand='+$("#brand2").textbox("getValue")+'&category='+$("#category2").textbox("getValue");
+		var url='updateProduct?productid='+$("#productid2").textbox("getValue")+'&productname='+$("#productname2").textbox("getValue")+'&housename='+$("#housename2").textbox("getValue");
+		url+='&apc='+$("#apc2").numberbox('getValue')+'&brand='+$("#brand2").textbox("getValue")+'&category='+$("#category2").textbox("getValue");
 		url+='&feature1='+$("#feature12").textbox("getValue")+'&feature2='+$("#feature22").textbox("getValue");
-		url=encodeURI(url); 
-		url=encodeURI(url); //二次次编码解决（url）ajax提交传递中文,表单postservlet写一句request.setCharacterEncoding("utf-8");就行。
+
 		$.ajax({
 			url:url,
 			method:'edit',
 			async:false,
 			success:function(){
-				
+				window.location.reload();	
 			}
 		})
-		window.location.reload();
+		
 	}
 }
 
@@ -328,7 +269,7 @@ function deletesh(index){
 		$("#mydatagrid").datagrid("selectRow",index)
 		var aa=$("#mydatagrid").datagrid("getSelected");
 		alert("删除成功");
-		var url='deleteProduct1?productid='+aa.productid;
+		var url='deleteProduct?productid='+aa.productid;
 		$.ajax({
 			url:url,
 			method:'delete',
@@ -347,14 +288,15 @@ function insertsh(){
 function search1(){
 	key=$("#key").combobox('getValue');
 	value=$("#value").textbox('getValue');
-	url='getProduct1?key='+key+'&value1='+value;
-	url=encodeURI(url); 
-	url=encodeURI(url);
+	url='MHselect?key='+key+'&value='+value;
+	console.log(url)
+
 	$.ajax({
 		url:url,
 		method:'get',
 		async:false,
 		success:function(data){
+			console.log("data---"+data)
 			data=eval(data);
 			$("#mydatagrid").datagrid('loadData',data);
 		}
@@ -363,9 +305,8 @@ function search1(){
 function search2(){
 	key=$("#key").combobox('getValue');
 	value=$("#value").textbox('getValue');
-	url='getProduct1?key='+key+'&value2='+value;
-	url=encodeURI(url); 
-	url=encodeURI(url);
+	url='JQselect?key='+key+'&value='+value;
+
 	$.ajax({
 		url:url,
 		method:'get',

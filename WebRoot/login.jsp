@@ -7,7 +7,7 @@
 <script type="text/javascript" src="jqeasyui/jquery.min.js"></script>
 <script type="text/javascript" src="jqeasyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="jqeasyui/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src="system/easyui_functions.js"></script>
+<script type="text/javascript" src="jqeasyui/easyui_functions.js"></script>
 </head>
   
 <body id="main">
@@ -25,7 +25,7 @@
 i=Math.random()*12+58;
 i=i-i%1;
 function letslogin(){
-	str="<div id='login_div'><form id='loginform' action='HelloMain' method='post' onsubmit='return check1(this);'><div id='label1'>账号：</div><input type='text' id='userid' name='userid'/>";
+	str="<div id='login_div'><form id='loginform' action='login' method='post' onsubmit='return check1(this);'><div id='label1'>账号：</div><input type='text' id='userid' name='userid'/>";
 	str+="<div id='label2'>密码：</div><input type='password' id='password' name='password'/><img id='checkpic' src='gywpic/checkpic/66.jpg' style='position:relative;top:110px;height:55px;width:140px'/>";
 	str+="<div id='label3'>验证码：</div><input type='text' id='answer' onkeydown='if(event.keyCode==13){}'/><a id='btn2' onClick='submit()' class='btn2' style='cursor:pointer'>登 录</a></form></div>";
 	$("#main").append(str);
@@ -54,8 +54,8 @@ function check1(){
 }
 </script>
 <%
-if(request.getAttribute("info1")!=null)
-{
+if(request.getAttribute("message")!=null)
+{System.out.println(request.getAttribute("message"));
 %>
 <script>alert('错误的用户名或密码！')</script>
 <%	
